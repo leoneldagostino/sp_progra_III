@@ -14,8 +14,6 @@ class ProductoController extends Producto implements IApiUsable {
         $marca = $parametros['marca'];
         $imagen = $parametros['imagen'];
         Producto::guardarProducto($nombre, $precio, $tipo, $stock, $marca, $imagen);
-        error_log($nombre,$precio,$tipo,$stock,$marca,$imagen);
-        // Producto::guardarProducto($nombre, $precio, $tipo, $stock, $marca, $imagen);
 
         $payload = json_encode(array("mensaje" => "producto creado con exito"));
 

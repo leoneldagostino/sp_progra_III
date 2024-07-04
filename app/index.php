@@ -40,8 +40,6 @@ $app->group('/usuarios', function (RouteCollectorProxy $group) {
 });
 
 $app->group('/tienda', function (RouteCollectorProxy $group) {
-  $group->get('[/]', \UsuarioController::class . ':TraerTodos');
-
   $group->post('/alta', \ProductoController::class . ':CargarUno');
 });
 

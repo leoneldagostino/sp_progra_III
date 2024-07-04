@@ -8,31 +8,20 @@ class Producto {
     public $marca;
     public $imagen;
 
-    public function __construct($nombre, $precio, $tipo, $stock, $marca, $imagen) {
-        $this->nombre = $nombre;
-        $this->precio = $precio;
-        $this->tipo = $tipo;
-        $this->stock = $stock;
-        $this->marca = $marca;
-        $this->imagen = $imagen;
-    }
+
 
     public static function guardarProducto($nombre, $precio, $tipo, $stock, $marca, $imagen) {
-        $productoABuscar = Producto::consultar($nombre, $tipo, $marca);
-        if ($productoABuscar != false) {
-            Producto::actualizarProducto($productoABuscar->id, $precio, $productoABuscar->stock + $stock);
-            return "El producto ya existe";
-        }
-            $objetoAccesoDato = AccesoDatos::obtenerInstancia();
-            $consulta = $objetoAccesoDato->prepararConsulta("INSERT INTO tienda (nombre, precio, tipo, stock, marca, imagen) VALUES (:nombre, :precio, :tipo, :stock, :marca, :imagen)");
-            $consulta->bindValue(':nombre', $nombre, PDO::PARAM_STR);
-            $consulta->bindValue(':precio', $precio, PDO::PARAM_STR);
-            $consulta->bindValue(':tipo', $tipo, PDO::PARAM_STR);
-            $consulta->bindValue(':stock', $stock, PDO::PARAM_INT);
-            $consulta->bindValue(':marca', $marca, PDO::PARAM_STR);
-            $consulta->bindValue(':imagen', $imagen, PDO::PARAM_STR);
-            $consulta->execute();
-            return $objetoAccesoDato->obtenerUltimoId();
+
+        $objetoAccesoDato = AccesoDatos::obtenerInstancia();
+        $consulta = $objetoAccesoDato->prepararConsulta("INSERT INTO tienda (nombre, precio, tipo, stock, marca, imagen) VALUES (:nombre, :precio, :tipo, :stock, :marca, :imagen)");
+        $consulta->bindValue(':nombre', $nombre, PDO::PARAM_STR);
+        $consulta->bindValue(':precio', $precio, PDO::PARAM_STR);
+        $consulta->bindValue(':tipo', $tipo, PDO::PARAM_STR);
+        $consulta->bindValue(':stock', $stock, PDO::PARAM_INT);
+        $consulta->bindValue(':marca', $marca, PDO::PARAM_STR);
+        $consulta->bindValue(':imagen', $imagen, PDO::PARAM_STR);
+        $consulta->execute();
+        return $objetoAccesoDato->obtenerUltimoId();
         
     }
 
@@ -43,11 +32,13 @@ class Producto {
         return $consulta->fetchAll(PDO::FETCH_CLASS, 'Producto');
     }
 
-    public static function actualizarProducto($id, $precio, $stock) {
+    public static function actualizarProducto($nombre,$marca,$tipo,$precio, $stock) {
         $objetoAccesoDato = AccesoDatos::obtenerInstancia();
-        $consulta = $objetoAccesoDato->prepararConsulta("UPDATE productos SET precio = :precio, stock = :stock WHERE id = :id");
-        $consulta->bindValue(':id', $id, PDO::PARAM_INT);
-        $consulta->bindValue(':precio', $precio, PDO::PARAM_STR);
+        $consulta = $objetoAccesoDato->prepararConsulta("UPDATE tienda SET precio = :precio, stock = :stock, WHERE nombre = :nombre AND marca = :marca AND tipo = :tipo");
+        $consulta->bindValue(':nombre', $nombre, PDO::PARAM_STR);
+        $consulta->bindValue(':marca', $marca, PDO::PARAM_STR);
+        $consulta->bindValue(':tipo', $tipo, PDO::PARAM_STR);
+        $consulta->bindValue(':precio', $precio, PDO::PARAM_INT);
         $consulta->bindValue(':stock', $stock, PDO::PARAM_INT);
         $consulta->execute();
         return $consulta->rowCount();
@@ -60,7 +51,7 @@ class Producto {
         $consulta->bindValue(':tipo', $tipo, PDO::PARAM_STR);
         $consulta->bindValue(':marca', $marca, PDO::PARAM_STR);
         if ($consulta->execute()) {
-            return $consulta->fetchObject('Producto');
+            return true;
         }
         return false;
     }
