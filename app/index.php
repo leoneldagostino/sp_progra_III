@@ -17,6 +17,7 @@ require_once './db/AccesoDatos.php';
 
 require_once './controllers/UsuarioController.php';
 require_once './controllers/ProductoController.php';
+require_once './controllers/VentaController.php';
 
 
 // Load ENV
@@ -41,7 +42,15 @@ $app->group('/usuarios', function (RouteCollectorProxy $group) {
 
 $app->group('/tienda', function (RouteCollectorProxy $group) {
   $group->post('/alta', \ProductoController::class . ':CargarUno');
+  $group->post('/consultar', \ProductoController::class . ':TraerUno');
 });
+$app->group('/venta', function (RouteCollectorProxy $group) {
+  $group->post('/alta', \VentaController::class . ':CargarUno');
+  $group->get('/consultar/{ruta:.+}', \VentaController::class . ':Consultar');
+  $group->put('/modificar', \VentaController::class . ':ModificarUno');
+});
+
+
 
 $app->get('[/]', function (Request $request, Response $response) {    
     $payload = json_encode(array("mensaje" => "Slim Framework 4 PHP"));
