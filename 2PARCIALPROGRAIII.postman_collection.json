@@ -1,0 +1,734 @@
+{
+	"info": {
+		"_postman_id": "949f8b94-7fc8-4be5-83d0-481b8da9b1e6",
+		"name": "2PARCIALPROGRAIII",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27501751"
+	},
+	"item": [
+		{
+			"name": "1B-tienda/alta",
+			"item": [
+				{
+					"name": "Alta producto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Producto1\",\n    \"precio\": 100,\n    \"tipo\": \"Smartphone\",\n    \"marca\": \"Marca1\",\n    \"stock\": 10,\n    \"imagen\": \"imagenTel\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:666/tienda/alta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"tienda",
+								"alta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "alta producto(ya existe)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Producto1\",\n    \"precio\": 120,\n    \"tipo\": \"Smartphone\",\n    \"marca\": \"Marca1\",\n    \"stock\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:666/tienda/alta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"tienda",
+								"alta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "alta producto(con foto)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "producto2",
+									"type": "text"
+								},
+								{
+									"key": "precio",
+									"value": "200",
+									"type": "text"
+								},
+								{
+									"key": "tipo",
+									"value": "Tablet",
+									"type": "text"
+								},
+								{
+									"key": "marca",
+									"value": "marca2",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "15",
+									"type": "text"
+								},
+								{
+									"key": "imagen",
+									"type": "file",
+									"src": "/Users/rociofernandez/Documents/eloy/Documentos/certificado.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:666/tienda/alta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"tienda",
+								"alta"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "2-tienda/consultar",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "consultar producto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "producto1",
+									"type": "text"
+								},
+								{
+									"key": "marca",
+									"value": "Marca1",
+									"type": "text"
+								},
+								{
+									"key": "tipo",
+									"value": "Smartphone",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:666/tienda/consultar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"tienda",
+								"consultar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "consultar producto(no existe marca)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "producto1",
+									"type": "text"
+								},
+								{
+									"key": "marca",
+									"value": "no existe",
+									"type": "text"
+								},
+								{
+									"key": "tipo",
+									"value": "Smartphone",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:666/tienda/consultar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"tienda",
+								"consultar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "consultar producto(no existe tipo)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nombre",
+									"value": "producto1",
+									"type": "text"
+								},
+								{
+									"key": "marca",
+									"value": "Marca1",
+									"type": "text"
+								},
+								{
+									"key": "tipo",
+									"value": "no existe",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:666/tienda/consultar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"tienda",
+								"consultar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "3a-ventas/alta",
+			"item": [
+				{
+					"name": "Venta con stock suficiente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user2@example.com\",\n    \"nombre_producto\": \"Producto2\",\n    \"tipo_producto\": \"Tablet\",\n    \"marca_producto\": \"Marca2\",\n    \"cantidad\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:666/venta/alta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"venta",
+								"alta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Venta con stock insuficiente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\",\n    \"nombre_producto\": \"Producto1\",\n    \"tipo_producto\": \"Smartphone\",\n    \"marca_producto\": \"Marca1\",\n    \"cantidad\": 100\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:666/venta/alta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"venta",
+								"alta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Venta con producto no existente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\",\n    \"nombre_producto\": \"no existe\",\n    \"tipo_producto\": \"Smartphone\",\n    \"marca_producto\": \"Marca1\",\n    \"cantidad\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:666/venta/alta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"venta",
+								"alta"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4-ventas/consultar",
+			"item": [
+				{
+					"name": "ventas en un sin especifico",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\",\n    \"nombre_producto\": \"Producto1\",\n    \"tipo_producto\": \"Smartphone\",\n    \"marca_producto\": \"Marca1\",\n    \"cantidad\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:666/venta/consultar/productos/vendidos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"venta",
+								"consultar",
+								"productos",
+								"vendidos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ventas en un dia especifico",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\",\n    \"nombre_producto\": \"Producto1\",\n    \"tipo_producto\": \"Smartphone\",\n    \"marca_producto\": \"Marca1\",\n    \"cantidad\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:666/venta/consultar/productos/vendidos?fecha=2024-07-05",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"venta",
+								"consultar",
+								"productos",
+								"vendidos"
+							],
+							"query": [
+								{
+									"key": "fecha",
+									"value": "2024-07-05"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ventas por usuario",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\",\n    \"nombre_producto\": \"Producto1\",\n    \"tipo_producto\": \"Smartphone\",\n    \"marca_producto\": \"Marca1\",\n    \"cantidad\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:666/venta/consultar/ventas/porUsuario?email=user@example.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"venta",
+								"consultar",
+								"ventas",
+								"porUsuario"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "user@example.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ventas por tipo de producto",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\",\n    \"nombre_producto\": \"Producto1\",\n    \"tipo_producto\": \"Smartphone\",\n    \"marca_producto\": \"Marca1\",\n    \"cantidad\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:666/venta/consultar/ventas/porProducto?tipo=Tablet",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"venta",
+								"consultar",
+								"ventas",
+								"porProducto"
+							],
+							"query": [
+								{
+									"key": "tipo",
+									"value": "Tablet"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "venta entre valores",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\",\n    \"nombre_producto\": \"Producto1\",\n    \"tipo_producto\": \"Smartphone\",\n    \"marca_producto\": \"Marca1\",\n    \"cantidad\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:666/venta/consultar/productos/entreValores?valorMin=100&valorMax=250",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"venta",
+								"consultar",
+								"productos",
+								"entreValores"
+							],
+							"query": [
+								{
+									"key": "valorMin",
+									"value": "100"
+								},
+								{
+									"key": "valorMax",
+									"value": "250"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ingresos por dia especifico",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\",\n    \"nombre_producto\": \"Producto1\",\n    \"tipo_producto\": \"Smartphone\",\n    \"marca_producto\": \"Marca1\",\n    \"cantidad\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:666/venta/consultar/ventas/ingresos?fecha=2024-07-05",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"venta",
+								"consultar",
+								"ventas",
+								"ingresos"
+							],
+							"query": [
+								{
+									"key": "fecha",
+									"value": "2024-07-05"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ingresos sin especificar",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\",\n    \"nombre_producto\": \"Producto1\",\n    \"tipo_producto\": \"Smartphone\",\n    \"marca_producto\": \"Marca1\",\n    \"cantidad\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:666/venta/consultar/ventas/ingresos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"venta",
+								"consultar",
+								"ventas",
+								"ingresos"
+							],
+							"query": [
+								{
+									"key": "fecha",
+									"value": "2024-07-05",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "producto mas vendido",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user@example.com\",\n    \"nombre_producto\": \"Producto1\",\n    \"tipo_producto\": \"Smartphone\",\n    \"marca_producto\": \"Marca1\",\n    \"cantidad\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:666/venta/consultar/productos/masVendido",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"venta",
+								"consultar",
+								"productos",
+								"masVendido"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "5- ventas/modificar",
+			"item": [
+				{
+					"name": "modificar venta existente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"numero_pedido\": 34346,\n    \"email\": \"user@example.com\",\n    \"nombre_producto\": \"Producto1\",\n    \"tipo_producto\": \"Smartphone\",\n    \"marca_producto\": \"Marca1\",\n    \"cantidad\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:666/venta/modificar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"venta",
+								"modificar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "modificar venta que no existe",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"numero_pedido\": 1,\n    \"email\": \"user@example.com\",\n    \"nombre_producto\": \"Producto1\",\n    \"tipo_producto\": \"Smartphone\",\n    \"marca_producto\": \"Marca1\",\n    \"cantidad\": 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:666/venta/modificar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "666",
+							"path": [
+								"venta",
+								"modificar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

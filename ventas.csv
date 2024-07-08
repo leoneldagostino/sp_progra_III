@@ -1,0 +1,20 @@
+<br />
+<b>Warning</b>:  Attempt to read property "email_usuario" on array in <b>C:\xampp\htdocs\sp_progra_III\app\controllers\VentaController.php</b> on line <b>131</b><br />
+<br />
+<b>Warning</b>:  Attempt to read property "nombre_producto" on array in <b>C:\xampp\htdocs\sp_progra_III\app\controllers\VentaController.php</b> on line <b>131</b><br />
+<br />
+<b>Warning</b>:  Attempt to read property "tipo_producto" on array in <b>C:\xampp\htdocs\sp_progra_III\app\controllers\VentaController.php</b> on line <b>131</b><br />
+<br />
+<b>Warning</b>:  Attempt to read property "marca_producto" on array in <b>C:\xampp\htdocs\sp_progra_III\app\controllers\VentaController.php</b> on line <b>131</b><br />
+<br />
+<b>Warning</b>:  Attempt to read property "cantidad" on array in <b>C:\xampp\htdocs\sp_progra_III\app\controllers\VentaController.php</b> on line <b>131</b><br />
+<br />
+<b>Warning</b>:  Attempt to read property "fecha" on array in <b>C:\xampp\htdocs\sp_progra_III\app\controllers\VentaController.php</b> on line <b>131</b><br />
+<br />
+<b>Warning</b>:  Attempt to read property "numero_pedido" on array in <b>C:\xampp\htdocs\sp_progra_III\app\controllers\VentaController.php</b> on line <b>131</b><br />
+<br />
+<b>Warning</b>:  Attempt to read property "precio_total" on array in <b>C:\xampp\htdocs\sp_progra_III\app\controllers\VentaController.php</b> on line <b>131</b><br />
+email_usuario,nombre_producto,tipo_producto,marca_producto,cantidad,fecha,numero_pedido,precio_total
+,,,,,,,
+email_usuario,nombre_producto,tipo_producto,marca_producto,cantidad,fecha,numero_pedido,precio_total
+,,,,,,,

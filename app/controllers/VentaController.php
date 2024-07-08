@@ -71,8 +71,9 @@ class VentaController extends Venta implements IApiUsable
     public function CargarUno($request, $response, $args)
     {
 
-
+        $rutaImagenes = './imagenesVenta/2024';
         $parametros = $request->getParsedBody();
+        $archivo = $request->getUploadedFiles();
         $venta = new Venta();
 
         $venta->email_usuario = $parametros['email'];
@@ -88,7 +89,17 @@ class VentaController extends Venta implements IApiUsable
             $venta->precio_total = Venta::calcularPrecio($venta->nombre_producto,$venta->tipo_producto,$venta->marca_producto,$venta->cantidad);
             if(Venta::consultarStock($venta->cantidad,$venta->nombre_producto,$venta->tipo_producto,$venta->marca_producto))
             {
-    
+                $imagen = '';
+
+                if (isset($archivo['imagen'])) {
+                    $imagenArchivo = $archivo['imagen'];
+                    $extension = pathinfo($imagenArchivo->getClientFilename(), PATHINFO_EXTENSION);
+                    $filename = $venta->nombre_producto . '_' . $venta->tipo_producto . '_' . $venta->marca_producto . '.' . $extension;
+                    $rutaDestino = $rutaImagenes . $filename;
+                    $imagenArchivo->moveTo($rutaDestino);
+                    $imagen = $rutaDestino;
+                }
+                Venta::guardarImagen($venta->numero_pedido,$imagen);
                 Venta::descontarStock($venta->nombre_producto,$venta->tipo_producto,$venta->marca_producto,$venta->cantidad);
                 $venta->guardar();
                 $payload = json_encode(array("mensaje" => "Venta guardada!"));
@@ -108,9 +119,29 @@ class VentaController extends Venta implements IApiUsable
             return $response->withHeader('Content-Type', 'application/json');
         
         }
-
-
     }
+
+    public function DescargarCSV($request, $response, $args)
+    {
+        $ventas = Venta::consultarTodos();
+        $csv = fopen('./csv/ventas.csv', 'w+');
+        fputcsv($csv, array('email_usuario', 'nombre_producto', 'tipo_producto', 'marca_producto', 'cantidad', 'fecha', 'numero_pedido', 'precio_total'));
+        foreach ($ventas as $venta)
+        {
+            fputcsv($csv, array($venta->email_usuario, $venta->nombre_producto, $venta->tipo_producto, $venta->marca_producto, $venta->cantidad, $venta->fecha, $venta->numero_pedido, $venta->precio_total));
+        }
+        fclose($csv);
+        $csv = file_get_contents('./csv/ventas.csv');
+        $response->getBody()->write($csv);
+
+        $response = $response->withHeader('Content-Type', 'text/csv');
+        $response = $response->withHeader('Content-Disposition', 'attachment; filename="ventas.csv"');
+        $response->getBody()->write($csv);
+        
+        return $response;
+    }
+
+
     public function TraerUno($request, $response, $args){}
 	public function TraerTodos($request, $response, $args){}
 	public function BorrarUno($request, $response, $args){}

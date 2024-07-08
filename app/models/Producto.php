@@ -75,7 +75,7 @@ class Producto {
         $ruta = "./imagenesProductos/2024/" . $imagen;
 
         $objetoAccesoDato = AccesoDatos::obtenerInstancia();
-        $consulta = $objetoAccesoDato->prepararConsulta("UPDATE tienda SET imagen = :precio WHERE nombre = :nombre AND marca = :marca AND tipo = :tipo");
+        $consulta = $objetoAccesoDato->prepararConsulta("UPDATE tienda SET imagen = :imagen WHERE nombre = :nombre AND marca = :marca AND tipo = :tipo");
         $consulta->bindValue(':nombre', $nombre, PDO::PARAM_STR);
         $consulta->bindValue(':marca', $marca, PDO::PARAM_STR);
         $consulta->bindValue(':tipo', $tipo, PDO::PARAM_STR);

@@ -68,7 +68,25 @@ class Venta
     
         return $objetoAccesoDato->obtenerUltimoId();
     }
-    
+
+    public static function consultarTodos()
+    {
+        $objetoAccesoDato = AccesoDatos::obtenerInstancia();
+        $consulta = $objetoAccesoDato->prepararConsulta("SELECT * FROM ventas");
+        $consulta->execute();
+        return $consulta->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public static function guardarImagen($numeroPedido,$imagen)
+    {
+        $ruta = "./imagenesVenta/2024/" . $imagen;
+
+        $objetoAccesoDato = AccesoDatos::obtenerInstancia();
+        $consulta = $objetoAccesoDato->prepararConsulta("UPDATE ventas SET imagen = :imagen WHERE numero_pedido = :numero");
+        $consulta->bindValue(':numero', $numeroPedido, PDO::PARAM_INT);
+        $consulta->bindValue(':imagen', $ruta, PDO::PARAM_STR);
+        $consulta->execute();
+        return $objetoAccesoDato->obtenerUltimoId();
+    }
 
     public static function consultarPorDia($fecha)
     {

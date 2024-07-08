@@ -6,17 +6,36 @@ require_once './models/Producto.php';
 class ProductoController extends Producto implements IApiUsable {
     public function CargarUno($request, $response, $args) {
         $parametros = $request->getParsedBody();
+        $archivo = $request->getUploadedFiles();
+        $rutaImagenes = 'imagenesProductos/2024/';
+
         $nombre = $parametros['nombre'];
         $precio = $parametros['precio'];
         $tipo = $parametros['tipo'];
         $stock = $parametros['stock'];
         $marca = $parametros['marca'];
-        // $imagen = isset($parametros['imagen'])? $parametros['imagen']:false;
+        $imagen = '';
+
+        if (isset($archivo['imagen'])) {
+            $imagenArchivo = $archivo['imagen'];
+            $extension = pathinfo($imagenArchivo->getClientFilename(), PATHINFO_EXTENSION);
+            $filename = $nombre . '_' . $tipo . '_' . $marca . '.' . $extension;
+            $rutaDestino = $rutaImagenes . $filename;
+            $imagenArchivo->moveTo($rutaDestino);
+            $imagen = $rutaDestino;
+        }
+        else
+        {  
+            $imagen = '';
+        }
 
         $verificoProducto = Producto::consultar($nombre,$tipo,$marca);
 
         if($verificoProducto) {
             Producto::actualizarProducto($nombre,$marca,$tipo,$precio,$stock);
+            if($imagen){
+                Producto::guardarImagen($nombre,$tipo,$marca,$imagen);
+            }
 
             $payload = json_encode(array("mensaje" => "el producto ya existe"));
             $response->getBody()->write($payload);
@@ -25,7 +44,7 @@ class ProductoController extends Producto implements IApiUsable {
         else{
 
             Producto::guardarProducto($nombre, $precio, $tipo, $stock, $marca);
-
+            Producto::guardarImagen($nombre,$tipo,$marca,$imagen);
     
             $payload = json_encode(array("mensaje" => "producto creado con exito"));
     
