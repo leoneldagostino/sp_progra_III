@@ -26,7 +26,7 @@ class ConfirmarPerfil
         } catch (Exception $e) {
             $response = new \Slim\Psr7\Response();
             $response->getBody()->write(json_encode(['error' => $e->getMessage()]));
-            return $response->withHeader('Content-Type', 'application/json')->withStatus(403);
+            return $response->withHeader('Content-Type', 'application/json');
         }
 
         return $handler->handle($request);
