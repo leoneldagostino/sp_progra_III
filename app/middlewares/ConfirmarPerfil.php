@@ -14,7 +14,9 @@ class ConfirmarPerfil
 
     public function __invoke($request, $handler)
     {
-        $token = $request->getHeader('Authorization')[0];
+        $header = $request->getHeader('Authorization');
+        $tokenArray = explode(' ', $header[0]);
+        $token = $tokenArray[1];
         try {
             Autenticador::verificarToken($token);
             $datosUsuario = Autenticador::obtenerDatos($token);

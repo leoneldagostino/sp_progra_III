@@ -98,14 +98,14 @@ class ProductoController extends Producto implements IApiUsable {
     }
 
     public function TraerTodos($request, $response, $args) {
-        // Tu código aquí
+        
     }
 
     public function BorrarUno($request, $response, $args) {
-        // Tu código aquí
+        
     }
 
     public function ModificarUno($request, $response, $args) {
-        // Tu código aquí
+        
     }
 }
