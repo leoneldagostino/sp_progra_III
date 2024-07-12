@@ -12,8 +12,8 @@ class ProductoController extends Producto implements IApiUsable {
         $nombre = $parametros['nombre'];
         $precio = $parametros['precio'];
         $tipo = $parametros['tipo'];
-        $stock = $parametros['stock'];
         $marca = $parametros['marca'];
+        $stock = $parametros['stock'];
         $imagen = '';
 
         if (isset($archivo['imagen'])) {

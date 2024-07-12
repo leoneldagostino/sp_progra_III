@@ -14,7 +14,7 @@ class UsuarioController extends Usuario implements IApiUsable
     {
         $parametros = $request->getParsedBody();
         $usuario = $parametros['usuario'];
-        $password = $parametros['password'];
+        $password = $parametros['clave'];
 
         // Validar el usuario y la contraseña contra la base de datos
         $objetoAccesoDato = AccesoDatos::obtenerInstancia();
